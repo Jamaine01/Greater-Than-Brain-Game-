@@ -37,55 +37,27 @@
 	var num_two = Number(document.getElementById('num_two'));
 
 	if (num_one > num_two) {
-		$('#num_one').click(function(){
-			$.ajax({
-			  url: 'http://127.0.0.1:5000/play',
-			  data: null,
-			  success: null,
-			  dataType: 'POST',
-			});
-		});
+		num_one = True;
+		num_two = False;
 	}
 	else if (num_two > num_one) {
-		$('#num_two').click(function(){
-			$.ajax({
-			  url: 'http://127.0.0.1:5000/play',
-			  data: null,
-			  success: null,
-			  dataType: 'POST',
-			});
-
-		});
-	}
-	else if (num_one === num_two) {
-		$('#num_one').click(function(){
-			$.ajax({
-			  url: 'http://127.0.0.1:5000/play',
-			  data: null,
-			  success: null,
-			  dataType: 'POST',
-			});
-
-		});
-		$('#num_two').click(function(){
-			$.ajax({
-			  url:'http://127.0.0.1:5000/play',
-			  data: null,
-			  success: null,
-			  dataType: 'POST',
-			});
-
-		});
+		num_two = True;
+		num_one = False;
 	}
 	else {
-		$.ajax({
-		  url: 'http://127.0.0.1:5000/',
-		  data: null,
-		  success: null,
-		  dataType: 'POST',
-		});
+		num_one && num_two = True;
+	};
 
-	}
+	function loadXMLDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+    	alert('Test');
+    }
+  };
+  xhttp.open("GET", "http://127.0.0.1:5000/play", true);
+  xhttp.send();
+}
 
 </script>
 
