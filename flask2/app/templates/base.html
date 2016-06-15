@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Greater Than</title>
+
+<meta charset="utf-8"/>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="static/stylesheet.css" >
+
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+    <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+{% block content %}
+{% endblock %}
+
+<script>
+	
+	var num_one = Number(document.getElementById('num_one')); 
+	var num_two = Number(document.getElementById('num_two'));
+
+	if (num_one > num_two) {
+		$('#num_one').click(function(){
+			$.ajax({
+			  url: 'http://127.0.0.1:5000/play',
+			  data: null,
+			  success: null,
+			  dataType: 'POST',
+			});
+		});
+	}
+	else if (num_two > num_one) {
+		$('#num_two').click(function(){
+			$.ajax({
+			  url: 'http://127.0.0.1:5000/play',
+			  data: null,
+			  success: null,
+			  dataType: 'POST',
+			});
+
+		});
+	}
+	else if (num_one === num_two) {
+		$('#num_one').click(function(){
+			$.ajax({
+			  url: 'http://127.0.0.1:5000/play',
+			  data: null,
+			  success: null,
+			  dataType: 'POST',
+			});
+
+		});
+		$('#num_two').click(function(){
+			$.ajax({
+			  url:'http://127.0.0.1:5000/play',
+			  data: null,
+			  success: null,
+			  dataType: 'POST',
+			});
+
+		});
+	}
+	else {
+		$.ajax({
+		  url: 'http://127.0.0.1:5000/',
+		  data: null,
+		  success: null,
+		  dataType: 'POST',
+		});
+
+	}
+
+</script>
+
+</body>
+
+</html>
