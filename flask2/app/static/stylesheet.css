@@ -59,11 +59,21 @@ a:active {
 
 }
 
+.play_score {
+	top: 50px;
+}
+
+span {
+	font-size: 60px;
+	color: white;
+	font-family: 'Indie Flower', cursive;
+}
+
 .num_one {
 	font-family: 'Oswald', sans-serif;
 	font-size: 100px;
 	color: white;
-	top: 200px;
+	top: 150px;
 	border: 1px solid white;
 	width: 200px;
 	height: 200px;
@@ -79,7 +89,7 @@ a:active {
 	font-family: 'Oswald', sans-serif;
 	font-size: 100px;
 	color: white;
-	top: 200px;
+	top: 150px;
 	border: 1px solid white;
 	width: 200px;
 	height: 200px;
@@ -89,4 +99,15 @@ a:active {
 
 #num_two {
 	color: white;
+}
+
+#try_again {
+	background-color: #0980ba;
+	color: white;
+	border: 1px solid white;
+	width: 120px;
+	height: 40px;
+	font-family: 'Indie Flower', cursive;
+	font-size: 25px;
+
 }
