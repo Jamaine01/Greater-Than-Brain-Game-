@@ -33,31 +33,31 @@
 
 <script>
 	
-	var num_one = Number(document.getElementById('num_one')); 
-	var num_two = Number(document.getElementById('num_two'));
+	var num_one = Math.floor((Math.random() * 10) + 1);
+	
+	var num_two = Math.floor((Math.random() * 10) + 1);
+	
+	var user_id = document.forms['form']['name'].value;
 
-	if (num_one > num_two) {
-		num_one = True;
-		num_two = False;
-	}
-	else if (num_two > num_one) {
-		num_two = True;
-		num_one = False;
-	}
-	else {
-		num_one && num_two = True;
-	};
+	document.getElementById('num_one').value = num_one;
 
-	function loadXMLDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
-    	alert('Test');
-    }
-  };
-  xhttp.open("GET", "http://127.0.0.1:5000/play", true);
-  xhttp.send();
-}
+	document.getElementById('num_two').value = num_two;
+
+	var session = {
+		user: user_id,
+		score: 0
+	}
+
+	function checknum_one() {
+		alert('Test Number One');
+		// evaluates random number value comparison and user answer
+	}
+
+	function checknum_two() {
+		alert('Test Number Two');
+		// evaluates random number value comparison and user answer
+	}
+	
 
 </script>
 

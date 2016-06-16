@@ -4,6 +4,12 @@ html, body {
 	background-color: #0980ba;
 }
 
+button {
+	border: none;
+	background: none;
+	outline: none;
+}
+
 a:link {
     text-decoration: none;
 }
