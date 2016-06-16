@@ -4,11 +4,63 @@
 <div class="container game">
 	<div class="row">
 		<div class="col-md-6 text-center num_one">
-		<button id="num_one" onclick="checknum_one()">72</button>
+		<a><button id="num_one" onclick="checknum_one()" type="button"></button></a>
 		</div>
 		<div class="col-md-6 text-center num_two">
-		<button id="num_two" onclick="checknum_two()">98</button>
+		<a><button id="num_two" onclick="checknum_two()" type="button" value=""></button></a>
 		</div>
 	</div>
 </div>
+
+<script>
+	window.onload = function() {
+		
+		var num_one = Math.floor((Math.random() * 10) + 1);
+		
+		var num_two = Math.floor((Math.random() * 10) + 1);
+
+	    document.getElementById("num_one").innerHTML= num_one;
+	   
+	    document.getElementById("num_two").innerHTML= num_two;
+
+};
+
+	function checknum_one() {
+
+		// evaluates random number value comparison and user answer
+
+		var num_one = Number(document.getElementById("num_one").value);
+		var num_two = Number(document.getElementById("num_two").value);
+
+			if (num_one >= num_two) {
+
+				//RETURNS 0
+				//THEREFORE num_one & num_two === 0
+				//RESULTING IN ELSE IF NEVER RUNNING SINCE 0 = 0 
+				alert(num_one);
+				window.location.href = "http://127.0.0.1:5000/play";
+			}
+			else if (num_one < num_two){
+				alert('Wrong!');
+				window.location.href = "http://127.0.0.1:5000/";				
+			};
+
+		};
+
+		function checknum_two() {
+
+			// evaluates random number value comparison and user answer
+
+			if (num_two >= num_one) {
+
+				alert('Correct');
+				window.location.href = "http://127.0.0.1:5000/play";
+
+			}
+			else if (num_two < num_one) {
+				alert('Wrong!');
+				window.location.href = "http://127.0.0.1:5000/";
+			};
+		}
+</script>
 {% endblock %}

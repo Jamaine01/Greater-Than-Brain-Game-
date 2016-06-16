@@ -13,4 +13,6 @@ def name_input():
 
 @app.route('/play')
 def game():
+	# num_one = randint(20, 100)
+	# num_two = randint(20, 100)
 	return render_template('play.html')
