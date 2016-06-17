@@ -4,15 +4,15 @@
 <div class="container game">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3 text-center play_score">
-		<span>Score: {{ score }}</span>
+		<span>Score: <span id="score"></span></span>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-6 text-center num_one">
-		<a><button id="num_one" onclick="checknum_one()" type="button"></button></a>
+		<a><button id="num_one" type="button"></button></a>
 		</div>
 		<div class="col-md-6 text-center num_two">
-		<a><button id="num_two" onclick="checknum_two()" type="button" value=""></button></a>
+		<a><button id="num_two" type="button"></button></a>
 		</div>
 	</div>
 </div>
@@ -21,47 +21,51 @@
 
 	// var count = 1;
 
-	window.onload = function() {
+	// window.onload = function() {
 		
-		window.num_one = Math.floor((Math.random() * 10) + 1);
+	// 	window.num_one = Math.floor((Math.random() * 10) + 1);
 		
-		window.num_two = Math.floor((Math.random() * 10) + 1);
+	// 	window.num_two = Math.floor((Math.random() * 10) + 1);
 
-	    document.getElementById("num_one").innerHTML= num_one;
+	//     document.getElementById("num_one").innerHTML= num_one;
 	   
-	    document.getElementById("num_two").innerHTML= num_two;
+	//     document.getElementById("num_two").innerHTML= num_two;
 
-	};
+	// };
 
 
 
-	function checknum_one() {
+	// function checknum_one() {
 
-		// evaluates random number value comparison and user answer
+	// 	// evaluates random number value comparison and user answer
 
-		// var num_one = Number(document.getElementById("num_one").value);
-		// var num_two = Number(document.getElementById("num_two").value);
+	// 	// var num_one = Number(document.getElementById("num_one").value);
+	// 	// var num_two = Number(document.getElementById("num_two").value);
 
-			if (num_one >= num_two) { 
-				window.location.href = "http://127.0.0.1:5000/play";
-			}
-			else if (num_one < num_two){
-				window.location.href = "http://127.0.0.1:5000/fail";				
-			};
+	// 		if (num_one >= num_two) { 
+	// 			window.location.href = "/play";
+	// 		}
+	// 		else if (num_one < num_two){
+	// 			window.location.href = "http://127.0.0.1:5000/fail";				
+	// 		};
 
-		};
+	// 	};
 
-		function checknum_two() {
+	// 	function checknum_two() {
 
-			// evaluates random number value comparison and user answer
+	// 		// evaluates random number value comparison and user answer
 
-			if (num_two >= num_one) {
-				window.location.href = "http://127.0.0.1:5000/play";
+	// 		if (num_two >= num_one) {
+	// 			window.location.href = "http://127.0.0.1:5000/play";
 
-			}
-			else if (num_two < num_one) {
-				window.location.href = "http://127.0.0.1:5000/fail";
-			};
-		}
+	// 		}
+	// 		else if (num_two < num_one) {
+	// 			window.location.href = "http://127.0.0.1:5000/fail";
+	// 		};
+
+
+		// $('#num_one').onClick(){
+
+		// }
 </script>
 {% endblock %}

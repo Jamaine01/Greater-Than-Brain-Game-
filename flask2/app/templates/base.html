@@ -31,6 +31,63 @@
 {% block content %}
 {% endblock %}
 
+<script>
+	$(document).ready(function(){
+		var score = 0;
+
+		var num_one = Math.floor((Math.random() * 10) + 1);
+
+		var num_two = Math.floor((Math.random() * 10) + 1);
+
+
+		$('#score').val() = score;
+
+		$('#num_one').val() = num_one;
+
+		$('#num_two').val() = num_two;
+
+	$('#num_one').click(function(){
+		var num_one = $('#score').val();
+		var num_two = $('#score').val();
+		var score = $('#score').val();
+		// if (num_one >= num_two) {
+		// 	alert(num_one);
+		// 	var score = score++;
+		// 	var num_one = Math.floor((Math.random() * 10) + 1);
+		// 	var num_two = Math.floor((Math.random() * 10) + 1);
+		// 	// var score = Number(document.getElementById('score').value);
+		// 	document.getElementById("num_one").innerHTML = num_one;
+		// 	document.getElementById("num_two").innerHTML = num_two;
+		// 	document.getElementById('score').innerHTML = score;
+		// }
+		// else{
+		// 	window.location.href = "http://127.0.0.1:5000/fail";
+		// };
+		console.log($('#num_one').val());
+	});
+
+	$('#num_two').click(function(){
+		var num_one = Number(document.getElementById('num_one').value);
+		var num_two = Number(document.getElementById('num_two').value);
+		var score = Number(document.getElementById('score').value);
+		if (num_two >= num_one) {
+			alert(num_two);
+			var score = score++;
+			var num_one = Math.floor((Math.random() * 10) + 1);
+			var num_two = Math.floor((Math.random() * 10) + 1);
+			document.getElementById("num_one").innerHTML = num_one;	   
+			document.getElementById("num_two").innerHTML = num_two;
+			document.getElementById('score').innerHTML = score;
+		}
+		else {
+			window.location.href = "http://127.0.0.1:5000/fail";
+		};
+	});
+
+
+	});
+</script>
+
 </body>
 
 </html>

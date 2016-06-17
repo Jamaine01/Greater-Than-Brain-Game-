@@ -10,14 +10,16 @@ def home():
 @app.route('/begin')
 def name_input():
 	return render_template('name_begin.html')
-global score 
-score = -1
+
+# global score 
+# score = -1
+
 @app.route('/play')
 def game():
-	global score 
-	score = score + 1
-	return render_template('play.html', score = score)
+	# global score 
+	# score = score + 1
+	return render_template('play.html')
 
 @app.route('/fail')
 def fail():
-	return render_template('fail.html', score = score)
+	return render_template('fail.html')
