@@ -23,6 +23,6 @@ def game_med():
 def game_hard():
 	return render_template('play_hard.html')
 
-@app.route('/fail')
-def fail():
-	return render_template('fail.html')
+@app.route('/fail/<score>')
+def fail(score):
+	return render_template('fail.html', score = score)
