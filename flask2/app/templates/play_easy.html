@@ -15,11 +15,20 @@
 		<a><button id="num_two" type="button"></button></a>
 		</div>
 	</div>
+	<span id="timer" style="color: red; position: absolute; top: 550px; margin-left: 420px;"></span>
 </div>
+<!-- <span id="timer" style="color: red; position: absolute; top: 550px; margin-left: 500px;"></span> -->
 
 <script>
 
 	$(document).ready(function(){
+
+		window.setInterval(function(){
+		var score = $('#score').text();
+		var score = Number(score);
+		window.location.href = "/fail/"+score;
+}, 30000);
+
 		var score = 0;
 
 		var num_one = Math.floor((Math.random() * 10) + 1);
@@ -31,6 +40,22 @@
 		document.getElementById("num_two").innerHTML = num_two;
 
 		document.getElementById('score').innerHTML = score;
+
+		var count=30;
+
+		var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+		function timer(){
+		  count=count-1;
+		  if (count <= 0)
+		  {
+		     clearInterval(counter);
+		     //counter ended, do something here
+		     return;
+		  }
+		  document.getElementById("timer").innerHTML=count + " seconds";
+  //Do code for showing the number of seconds here
+}
 
 		// $('#score').val() = score;
 
