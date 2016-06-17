@@ -12,7 +12,7 @@
 		<a><button id="num_one" type="button"></button></a>
 		</div>
 		<div class="col-md-6 text-center num_two">
-		<a><button id="num_two" type="button"></button></a>
+		<a><button id="num_two" type="button" style="font-size: 80px;"></button><span id="operator">*</span><button id="num_three" type="button" style="font-size: 80px;"></button></a>
 		</div>
 	</div>
 </div>
@@ -22,13 +22,17 @@
 	$(document).ready(function(){
 		var score = 0;
 
-		var num_one = Math.floor((Math.random() * 10) + 1);
+		var num_one = Math.floor((Math.random() * 100) + 4);
 
 		var num_two = Math.floor((Math.random() * 10) + 1);
+
+		var num_three = Math.floor((Math.random() * 10) + 1);
 
 		document.getElementById("num_one").innerHTML = num_one;
 	   
 		document.getElementById("num_two").innerHTML = num_two;
+
+		document.getElementById("num_three").innerHTML = num_three;
 
 		document.getElementById('score').innerHTML = score;
 
@@ -44,19 +48,24 @@
 		
 		var num_two = $('#num_two').text();
 		var num_two = Number(num_two);
+
+		var num_three = $('#num_three').text();
+		var num_three = Number(num_three);
 		
 		var score = $('#score').text();
 		var score = Number(score);
 		
-		if (num_one >= num_two) {
+		if (num_one >= num_two*num_three) {
 			
 			score++;
 			
-			var num_one = Math.floor((Math.random() * 10) + 1);
+			var num_one = Math.floor((Math.random() * 100) + 4);
 			var num_two = Math.floor((Math.random() * 10) + 1);
+			var num_three = Math.floor((Math.random() * 10) + 1);
 			
 			document.getElementById("num_one").innerHTML = num_one;
 			document.getElementById("num_two").innerHTML = num_two;
+			document.getElementById("num_three").innerHTML = num_three;
 			document.getElementById('score').innerHTML = score;
 		}
 		else{
@@ -67,25 +76,30 @@
 		};
 	});
 
-	$('#num_two').click(function(){
+	$('#num_two, #num_three, #operator').click(function(){
 		var num_one = $('#num_one').text();
 		var num_one = Number(num_one);
 		
 		var num_two = $('#num_two').text();
 		var num_two = Number(num_two);
+
+		var num_three = $('#num_three').text();
+		var num_three = Number(num_three);
 		
 		var score = $('#score').text();
 		var score = Number(score);
 		
-		if (num_two >= num_one) {
+		if (num_two*num_three >= num_one) {
 			
 			score++;
 			
-			var num_one = Math.floor((Math.random() * 10) + 1);
+			var num_one = Math.floor((Math.random() * 100) + 4);
 			var num_two = Math.floor((Math.random() * 10) + 1);
+			var num_three = Math.floor((Math.random() * 10) + 1);
 			
 			document.getElementById("num_one").innerHTML = num_one;	   
 			document.getElementById("num_two").innerHTML = num_two;
+			document.getElementById("num_three").innerHTML = num_three;
 			document.getElementById('score').innerHTML = score;
 		}
 		else {

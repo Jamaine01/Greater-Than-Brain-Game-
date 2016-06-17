@@ -101,6 +101,18 @@ span {
 	color: white;
 }
 
+#num_three {
+	color: white;
+}
+
+#num_four {
+	color: white;
+}
+
+#operator_one, #operator_two {
+	color:white;
+}
+
 #try_again {
 	background-color: #0980ba;
 	color: white;

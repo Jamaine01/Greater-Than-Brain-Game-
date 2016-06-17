@@ -11,14 +11,17 @@ def home():
 def name_input():
 	return render_template('name_begin.html')
 
-# global score 
-# score = -1
+@app.route('/play_easy')
+def game_easy():
+	return render_template('play_easy.html')
 
-@app.route('/play')
-def game():
-	# global score 
-	# score = score + 1
-	return render_template('play.html')
+@app.route('/play_med')
+def game_med():
+	return render_template('play_med.html')
+
+@app.route('/play_hard')
+def game_hard():
+	return render_template('play_hard.html')
 
 @app.route('/fail')
 def fail():
