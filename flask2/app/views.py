@@ -1,7 +1,16 @@
 from app import app
-from flask import Flask, render_template, request, abort
+from flask import Flask, render_template, request, abort, Markup
 import sqlite3
 from random import randint
+
+conn = sqlite3.connect('scores.db', check_same_thread=False)
+db = conn.cursor()
+
+def save_score(name, score):
+	db.execute('''
+		INSERT INTO scores(name, score) VALUES(?,?)
+		''', (name, score))
+	conn.commit()
 
 @app.route('/')
 def home():
@@ -9,7 +18,7 @@ def home():
 
 @app.route('/begin')
 def name_input():
-	return render_template('name_begin.html')
+	return render_template('begin.html')
 
 @app.route('/play_easy')
 def game_easy():
@@ -26,3 +35,11 @@ def game_hard():
 @app.route('/fail/<score>')
 def fail(score):
 	return render_template('fail.html', score = score)
+
+@app.route('/save', methods = ['POST'])
+def save():
+	name = request.form['name']
+	score = request.form['score']
+	save_score(name, score)
+	print score
+	return render_template('start.html')
