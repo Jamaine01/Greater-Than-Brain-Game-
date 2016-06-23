@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for r in final_results %}
+<h3>{{ search }}   ---   {{ r }}</h3><br>
+{% endfor %}
+
+{% endblock %}

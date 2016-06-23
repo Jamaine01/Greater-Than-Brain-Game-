@@ -12,6 +12,13 @@ def save_score(name, score):
 		''', (name, score))
 	conn.commit()
 
+def search_score(search_name):
+	#SQLITE DOESNT SUPPORT VARIABLE INSERTIONS
+	db.execute('''
+		SELECT score FROM scores WHERE name = ? ORDER BY id
+		''', (search_name,))
+	return db.fetchall()
+
 @app.route('/')
 def home():
 	return render_template('start.html')
@@ -38,8 +45,27 @@ def fail(score):
 
 @app.route('/save', methods = ['POST'])
 def save():
-	name = request.form['name']
-	score = request.form['score']
-	save_score(name, score)
-	print score
-	return render_template('start.html')
+	if request.form['name'] != "":
+		name = request.form['name']
+		score = request.form['score']
+		save_score(name, score)
+		print score
+		return render_template('start.html')
+	else:
+		return render_template('start.html')
+
+@app.route('/test')
+def test():
+	return render_template('test.html')
+
+@app.route('/results', methods = ['POST'])
+def search():
+	search = request.form['search']
+	results = search_score(search)
+	final_results = []
+	for r in results:
+		r = str(r).replace('(','').replace(')','').replace(',','')
+		final_results.append(r)
+	return render_template('results.html',search = search, final_results = final_results)
+
+
