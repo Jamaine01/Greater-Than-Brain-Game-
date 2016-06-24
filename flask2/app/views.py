@@ -15,7 +15,7 @@ def save_score(name, score):
 def search_score(search_name):
 	#SQLITE DOESNT SUPPORT VARIABLE INSERTIONS
 	db.execute('''
-		SELECT score FROM scores WHERE name = ? ORDER BY id
+		SELECT score, timestamp FROM scores WHERE name = ? ORDER BY id
 		''', (search_name,))
 	return db.fetchall()
 
@@ -62,9 +62,10 @@ def test():
 def search():
 	search = request.form['search']
 	results = search_score(search)
+	print results
 	final_results = []
 	for r in results:
-		r = str(r).replace('(','').replace(')','').replace(',','')
+		r = str(r).replace('(','').replace(')','').replace(',',' --- ').replace('u', '')
 		final_results.append(r)
 	return render_template('results.html',search = search, final_results = final_results)
 

@@ -2,8 +2,11 @@
 
 {% block content %}
 
+<div id="score_results">
+<h2 align="center"><strong>Score Results for: {{ search }}</strong></h2><br>
 {% for r in final_results %}
 <h3>{{ search }}   ---   {{ r }}</h3><br>
 {% endfor %}
+</div>
 
 {% endblock %}
