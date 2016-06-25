@@ -26,7 +26,7 @@
 		window.setInterval(function(){
 		var score = $('#score').text();
 		var score = Number(score);
-		window.location.href = "/fail/"+score;
+		window.location.href = "/fail/"+score+'/Easy';
 	}, 30000);
 
 		var score = 0;
@@ -86,7 +86,7 @@
 		}
 		else{
 			//LOADS A NEW PAGE SO DOC.READY FUNCTION RUNS AND SCORE = 0 AGAIN??
-			window.location.href = "/fail/"+score;
+			window.location.href = "/fail/"+score+'/Easy';
 			// document.getElementById('final_score').innerHTML = score;
 		};
 	});
@@ -114,7 +114,7 @@
 		}
 		else {
 			//LOADS A NEW PAGE SO DOC.READY FUNCTION RUNS AND SCORE = 0 AGAIN??
-			window.location.href = "/fail/"+score;
+			window.location.href = "/fail/"+score+'/Easy';
 			// document.getElementById('final_score').innerHTML = score;
 		};
 	});

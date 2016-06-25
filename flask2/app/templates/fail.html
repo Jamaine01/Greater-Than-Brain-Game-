@@ -5,10 +5,12 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3 text-center start">
 			<h1 id="logo">Your Score: <span id="final_score">{{ score }}</span></h1>
+			<h1 id="logo2">Difficulty: <span id='difficulty'>{{ difficulty }}</span></h1>
 			<h2 id="save">Enter Name To Save Score</h2>
 			<form name="form" onsubmit="save_score()" action="/save" method="POST">
-				<input type="text" name="name" placeholder="Enter Name"></input>
+				<input type="text" name="name" placeholder="Enter Name"></input><br>
 				<input type="hidden" name="score" id"form_score" value=""/><br>
+				<input type="hidden" name="difficulty" id"form_difficulty" value=""/><br>
 			<a href="/save"><button type="submit" id="try_again">Try again</button></a>
 			</form>
 		</div>
@@ -19,7 +21,10 @@
 	function save_score(){
 		var player = document.forms['form']['name'].value;
 		var score = $('#final_score').text();
+		var difficulty = $('#difficulty').text();
 		document.forms['form']['score'].value = score;
+		document.forms['form']['difficulty'].value = difficulty;
+
 	}
 </script>
 

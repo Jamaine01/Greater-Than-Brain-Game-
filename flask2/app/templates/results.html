@@ -3,10 +3,43 @@
 {% block content %}
 
 <div id="score_results">
+<div class="container">
+<div class="row">
 <h2 align="center"><strong>Score Results for: {{ search }}</strong></h2><br>
-{% for r in final_results %}
-<h3>{{ search }}   ---   {{ r }}</h3><br>
+</div>
+<div class="row">
+<div class="col-md-4">
+<h1 style="text-align: center;" id="dif_res">Easy</h1>
+<h2 style="text-align: center; color: #7ecc72;">High Score: {{ hi_easy }}</h2><br>
+{% for r in final_results_easy %}
+<h3 style="font-size: 16px;">{{ search }}   ---   {{ r }}</h3>
+__________________________________________<br>
 {% endfor %}
+</div><br>
+<div class="col-md-4">
+<h1 style="text-align: center;" id="dif_res">Medium</h1>
+<h2 style="text-align: center; color: #56a9a7;">High Score: {{ hi_med }}</h2><br>
+{% for r in final_results_med %}
+<h3 style="font-size: 16px;">{{ search }}   ---   {{ r }}</h3>
+__________________________________________<br>
+{% endfor %}<br>
+</div>
+<div class="col-md-4">
+<h1 style="text-align: center;" id="dif_res">Hard</h1>
+<h2 style="text-align: center; color: #d42d2d;">High Score: {{ hi_hard }}</h2><br>
+{% for r in final_results_hard %}
+<h3 style="font-size: 16px;">{{ search }}   ---   {{ r }}</h3>
+__________________________________________<br>
+{% endfor %}
+</div><br>
+<div class="row">
+<div class="col-md-4 col-md-offset-4">
+<a href="/" align="center"><button type="submit" id="play_again">Play again</button></a>
+</div>
+</div>
+
+</div>
+</div>
 </div>
 
 {% endblock %}

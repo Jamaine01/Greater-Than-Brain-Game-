@@ -41,6 +41,23 @@ a:active {
 	font-family: 'Poiret One', cursive;
 }
 
+#logo2 {
+	font-size: 40px;
+	color: white;
+	font-family: 'Poiret One', cursive;
+}
+
+#dif_res {
+	color: white;
+	font-family: 'Poiret One', cursive;
+}
+
+#difficulty {
+	font-size: 40px;
+	color: white;
+	font-family: 'Poiret One', cursive;
+}
+
 #save {
 	font-size: 50px;
 	color: white;
@@ -84,8 +101,20 @@ a:active {
 }
 
 #score_results {
-	position: absolute;
-	margin-left: 425px;
+	font-size: 12px;
+	/*position: absolute;
+	margin-left: 425px;*/
+}
+
+#play_again {
+	margin-left: 100px;
+	background-color: black;
+	color: white;
+	border: 1px solid white;
+	width: 120px;
+	height: 40px;
+	font-family: 'Poiret One', cursive;
+	font-size: 16px;
 }
 
 #search_name {
@@ -99,6 +128,7 @@ h3, h2 {
 	color: white;
 	font-family: 'Poiret One', cursive;
 }
+
 
 span {
 	font-size: 60px;
