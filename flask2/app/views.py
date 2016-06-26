@@ -155,9 +155,18 @@ def search():
 			high_hard.append(int(r[0]))
 			r = str(r).replace('(','').replace(')','').replace(',',' --- ').replace("u'", "'").replace('2016-', '').replace('06-', 'June, ').replace('07', 'July')
 			final_results_hard.append(r)
-	hi_easy = max(high_easy)
-	hi_med = max(high_med)
-	hi_hard = max(high_hard)
+	if len(high_easy) >= 1:
+		hi_easy = max(high_easy)
+	else:
+		hi_easy = 0
+	if len(high_med) >= 1:
+		hi_med = max(high_med)
+	else:
+		hi_med = 0
+	if len(high_hard) >= 1:
+		hi_hard = max(high_hard)
+	else:
+		hi_hard = 0
 	sorted_results = sorted(final_results_easy)
 	high_score = sorted_results[0]
 	return render_template('results.html',search = search, high_score = high_score, final_results_easy = final_results_easy, final_results_med = final_results_med, final_results_hard = final_results_hard, hi_easy = hi_easy, hi_med = hi_med, hi_hard = hi_hard, chart = chart)
