@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, abort, Markup
 import sqlite3
 from random import randint
 import pygal
-from pygal.style import DarkSolarizedStyle
+from pygal.style import Style
 
 conn = sqlite3.connect('scores.db', check_same_thread=False)
 db = conn.cursor()
@@ -22,21 +22,38 @@ def search_score(search_name):
 		''', (search_name,))
 	return db.fetchall()
 
-@app.route('/chart')
-def graph():
-	results = search_score('Jamaine')
-	times = []
-	scores = []
-	for li in results:
-		scores.append(li[0])
-		times.append(str(li[2].replace('u', '').replace("'", '')))
-	print 'Times', times
-	print 'Scores', scores 
-	title = 'Test'
-	bar_chart = pygal.Bar(width=1200, height=600, explicit_size=True, title=title, style=DarkSolarizedStyle)
-	bar_chart.x_labels = times
-	bar_chart.add('Scores', scores)
-	return render_template('chart.html', title=title, bar_chart=bar_chart)
+# @app.route('/chart')
+# def graph():
+# 	custom = Style(
+# 		background='black',
+# 		plot_background='black',
+# 		colors=('#7ecc72', '#56a9a7', '#d42d2d'),
+# 		foreground='white',
+#   foreground_strong='white',
+#   foreground_subtle='white',
+
+# 		)
+# 	results = search_score('Jamaine')
+# 	times = []
+# 	scores_easy = []
+# 	scores_med = []
+# 	scores_hard = []
+# 	for li in results:
+# 		times.append(str(li[2].replace('u', '').replace("'", '')))
+# 		if 'Easy' in li:
+# 			scores_easy.append(li[0])
+# 		elif 'Medium' in li:
+# 			scores_med.append(li[0])
+# 		else:
+# 			scores_hard.append(li[0])
+# 	line_chart = pygal.Line(style=custom)
+# 	line_chart.title = 'Score Progession'
+# 	line_chart.x_labels = None
+# 	line_chart.add('Easy', scores_easy)
+# 	line_chart.add('Medium', scores_med)
+# 	line_chart.add('Hard', scores_hard)
+# 	chart = line_chart.render_data_uri()
+# 	return render_template('chart.html', chart = chart)
 
 @app.route('/')
 def home():
@@ -87,7 +104,36 @@ def search():
 	#FIND SCORES IN DB WITH FORM VALUE RESULTS
 	results = search_score(search)
 
-	print results
+
+	custom = Style(
+		background='black',
+		plot_background='black',
+		colors=('#7ecc72', '#56a9a7', '#d42d2d'),
+		foreground='white',
+  foreground_strong='white',
+  foreground_subtle='white',
+
+		)
+	times = []
+	scores_easy = []
+	scores_med = []
+	scores_hard = []
+	for li in results:
+		times.append(str(li[2].replace('u', '').replace("'", '')))
+		if 'Easy' in li:
+			scores_easy.append(li[0])
+		elif 'Medium' in li:
+			scores_med.append(li[0])
+		else:
+			scores_hard.append(li[0])
+	line_chart = pygal.Line(style=custom)
+	line_chart.title = None
+	line_chart.x_labels = None
+	line_chart.add('Easy', scores_easy)
+	line_chart.add('Medium', scores_med)
+	line_chart.add('Hard', scores_hard)
+	chart = line_chart.render_data_uri()
+
 
 	final_results_easy = []
 	high_easy = []
@@ -114,6 +160,6 @@ def search():
 	hi_hard = max(high_hard)
 	sorted_results = sorted(final_results_easy)
 	high_score = sorted_results[0]
-	return render_template('results.html',search = search, high_score = high_score, final_results_easy = final_results_easy, final_results_med = final_results_med, final_results_hard = final_results_hard, hi_easy = hi_easy, hi_med = hi_med, hi_hard = hi_hard)
+	return render_template('results.html',search = search, high_score = high_score, final_results_easy = final_results_easy, final_results_med = final_results_med, final_results_hard = final_results_hard, hi_easy = hi_easy, hi_med = hi_med, hi_hard = hi_hard, chart = chart)
 
 
