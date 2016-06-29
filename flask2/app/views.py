@@ -2,58 +2,59 @@ from app import app
 from flask import Flask, render_template, request, abort, Markup
 import sqlite3
 from random import randint
+import urllib
+import json
 import pygal
 from pygal.style import Style
 
 conn = sqlite3.connect('scores.db', check_same_thread=False)
 db = conn.cursor()
 
-def save_score(name, score, difficulty):
+def save_score(name, pwd, score, difficulty):
 	#SAVE NAME ENTERED AND SCORES TO DB
 	db.execute('''
-		INSERT INTO scores(name, score, difficulty) VALUES(?,?,?)
-		''', (name, score, difficulty))
+		INSERT INTO scores(name, pwd, score, difficulty) VALUES(?,?,?,?)
+		''', (name, pwd, score, difficulty))
 	conn.commit()
 
-def search_score(search_name):
+def search_score(search_name, pwd_search):
 	#SQLITE DOESNT SUPPORT VARIABLE INSERTIONS
 	db.execute('''
-		SELECT score, difficulty, timestamp FROM scores WHERE name = ? ORDER BY id
-		''', (search_name,))
+		SELECT score, difficulty, timestamp FROM scores WHERE name = ? AND pwd = ?
+		''', (search_name, pwd_search))
 	return db.fetchall()
 
-# @app.route('/chart')
-# def graph():
-# 	custom = Style(
-# 		background='black',
-# 		plot_background='black',
-# 		colors=('#7ecc72', '#56a9a7', '#d42d2d'),
-# 		foreground='white',
-#   foreground_strong='white',
-#   foreground_subtle='white',
+@app.route('/chart')
+def graph():
 
-# 		)
-# 	results = search_score('Jamaine')
-# 	times = []
-# 	scores_easy = []
-# 	scores_med = []
-# 	scores_hard = []
-# 	for li in results:
-# 		times.append(str(li[2].replace('u', '').replace("'", '')))
-# 		if 'Easy' in li:
-# 			scores_easy.append(li[0])
-# 		elif 'Medium' in li:
-# 			scores_med.append(li[0])
-# 		else:
-# 			scores_hard.append(li[0])
-# 	line_chart = pygal.Line(style=custom)
-# 	line_chart.title = 'Score Progession'
-# 	line_chart.x_labels = None
-# 	line_chart.add('Easy', scores_easy)
-# 	line_chart.add('Medium', scores_med)
-# 	line_chart.add('Hard', scores_hard)
-# 	chart = line_chart.render_data_uri()
-# 	return render_template('chart.html', chart = chart)
+	file = urllib.urlopen('https://data.cityofnewyork.us/resource/qfe3-6dkn.json').read()
+
+	data = json.loads(file)
+
+	locations = []
+
+	places = dict()
+
+	for i in data:
+		if 'city' in i:
+				locations.append(i['city'])
+
+	count = len(locations)
+
+	for place in locations:
+		places[place] = places.get(place, 0) + 1
+
+	places = places.items()
+
+	chart = pygal.Pie()
+	chart.title = 'Water Complaints'
+
+	for i in places:
+		percentage = i[1] * 0.0997
+		chart.add(i[0], percentage)
+
+	return chart.render()
+		
 
 @app.route('/')
 def home():
@@ -83,13 +84,15 @@ def fail(score, difficulty):
 def save():
 	#RETURN START PAGE IF NO NAME ENTERED
 	if request.form['name'] != "":
-		#IF NAME ENTERED, TAKES FORM VALUES AND SAVES THEM TO DB
-		name = request.form['name']
-		score = request.form['score']
-		difficulty = request.form['difficulty']
-		save_score(name, score, difficulty)
-		print score
-		return render_template('start.html')
+		if request.form['pwd'] != "":
+			#IF NAME ENTERED, TAKES FORM VALUES AND SAVES THEM TO DB
+			name = request.form['name']
+			pwd = request.form['pwd']
+			score = request.form['score']
+			difficulty = request.form['difficulty']
+			save_score(name, pwd, score, difficulty)
+			print score
+			return render_template('start.html')
 	else:
 		return render_template('start.html')
 
@@ -97,12 +100,16 @@ def save():
 def test():
 	return render_template('test.html')
 
-@app.route('/results', methods = ['POST'])
+@app.route('/results', methods = ['GET', 'POST'])
 def search():
 	#SETS VAR SEARCH TO FORM VALUE
-	search = request.form['search']
+	search_name = request.form['search']
+	search_pwd = request.form['pwd_search']
 	#FIND SCORES IN DB WITH FORM VALUE RESULTS
-	results = search_score(search)
+	results = search_score(search_name, search_pwd)
+	print results
+
+	search = str(request.form['search'])
 
 
 	custom = Style(
@@ -110,8 +117,8 @@ def search():
 		plot_background='black',
 		colors=('#7ecc72', '#56a9a7', '#d42d2d'),
 		foreground='white',
-  foreground_strong='white',
-  foreground_subtle='white',
+	  	foreground_strong='white',
+	  	foreground_subtle='white',
 
 		)
 	times = []
@@ -167,8 +174,7 @@ def search():
 		hi_hard = max(high_hard)
 	else:
 		hi_hard = 0
-	sorted_results = sorted(final_results_easy)
-	high_score = sorted_results[0]
-	return render_template('results.html',search = search, high_score = high_score, final_results_easy = final_results_easy, final_results_med = final_results_med, final_results_hard = final_results_hard, hi_easy = hi_easy, hi_med = hi_med, hi_hard = hi_hard, chart = chart)
+	
+	return render_template('results.html', search = search, final_results_easy = final_results_easy, final_results_med = final_results_med, final_results_hard = final_results_hard, hi_easy = hi_easy, hi_med = hi_med, hi_hard = hi_hard, chart = chart)
 
 

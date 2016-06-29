@@ -8,7 +8,9 @@
 			<h1 id="logo2">Difficulty: <span id='difficulty'>{{ difficulty }}</span></h1>
 			<h2 id="save">Enter Name To Save Score</h2>
 			<form name="form" onsubmit="save_score()" action="/save" method="POST">
-				<input type="text" name="name" placeholder="Enter Name"></input><br>
+				<input type="text" name="name" placeholder="Enter Name"></input>
+				<input type="password" name="pwd" placeholder="Password"></input>
+				<br>
 				<input type="hidden" name="score" id"form_score" value=""/><br>
 				<input type="hidden" name="difficulty" id"form_difficulty" value=""/><br>
 			<a href="/save"><button type="submit" id="try_again">Try again</button></a>
@@ -20,6 +22,7 @@
 <script>
 	function save_score(){
 		var player = document.forms['form']['name'].value;
+		var pwd = document.forms['form']['pwd'].value;
 		var score = $('#final_score').text();
 		var difficulty = $('#difficulty').text();
 		document.forms['form']['score'].value = score;

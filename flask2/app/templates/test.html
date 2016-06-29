@@ -4,8 +4,10 @@
 <div class="container">
 <div class="row">
 <div class="col-md-4 col-md-offset-4 text-center">
-<form id="search_name" name="search_form" onsubmit="search()" method="POST" action="/results">   <h3>Enter Name and Search Scores</h3>
+<form id="search_name" name="search_form" onsubmit="search()" method="POST" action="/results">   <h3>Enter Name and Password to Search Scores</h3>
 	<input type="text" name="search" placeholder="Search Name"></input>
+	<input type="password" name="pwd_search" placeholder="Password"></input>
+	<button type="submit">Search</button>
 </form>
 </div>
 </div>
@@ -16,3 +18,4 @@
 </script>
 
 {% endblock %}
+
