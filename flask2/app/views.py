@@ -1,14 +1,31 @@
 from app import app
 from flask import Flask, render_template, request, abort, Markup
+from flask_login import login_user, logout_user, current_user, login_required, LoginManager
 import sqlite3
 from random import randint
 import urllib
 import json
 import pygal
 from pygal.style import Style
+from werkzeug.contrib.cache import SimpleCache
+cache = SimpleCache()
+# from werkzeug.contrib.cache import GAEMemcachedCache
+# import memcache
+
+# cache = Cache(app,config={'CACHE_TYPE': 'simple'})
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 conn = sqlite3.connect('scores.db', check_same_thread=False)
 db = conn.cursor()
+
+
+def db_account(name, pwd):
+	db.execute('''
+		INSERT INTO scores(name, pwd) VALUES(?,?)
+		''', (name, pwd))
+	conn.commit()
+
 
 def save_score(name, pwd, score, difficulty):
 	#SAVE NAME ENTERED AND SCORES TO DB
@@ -17,6 +34,7 @@ def save_score(name, pwd, score, difficulty):
 		''', (name, pwd, score, difficulty))
 	conn.commit()
 
+
 def search_score(search_name, pwd_search):
 	#SQLITE DOESNT SUPPORT VARIABLE INSERTIONS
 	db.execute('''
@@ -24,41 +42,107 @@ def search_score(search_name, pwd_search):
 		''', (search_name, pwd_search))
 	return db.fetchall()
 
+def login_db(myname, mypassword):
+	db.execute('''
+		SELECT name FROM scores WHERE name = ? AND pwd = ?
+		''', (myname, mypassword))
+	return db.fetchall()
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
 @app.route('/chart')
 def graph():
-
-	file = urllib.urlopen('https://data.cityofnewyork.us/resource/qfe3-6dkn.json').read()
+	file = urllib.urlopen('https://data.seattle.gov/resource/kzjm-xkqj.json').read()
 
 	data = json.loads(file)
 
-	locations = []
+	platforms = []
 
-	places = dict()
+	platform_counts = {}
 
 	for i in data:
-		if 'city' in i:
-				locations.append(i['city'])
+		platforms.append(i['type'])
 
-	count = len(locations)
+	for platform in platforms:
+		platform_counts[platform] = platform_counts.get(platform, 0) + 1
 
-	for place in locations:
-		places[place] = places.get(place, 0) + 1
-
-	places = places.items()
+	all_platforms = platform_counts.items()
 
 	chart = pygal.Pie()
-	chart.title = 'Water Complaints'
 
-	for i in places:
-		percentage = i[1] * 0.0997
+	chart.title = 'Fire Call Types'
+
+	for i in all_platforms:
+		percentage = i[1] * 0.1
 		chart.add(i[0], percentage)
 
 	return chart.render()
+	# file = urllib.urlopen('https://data.cityofnewyork.us/resource/qfe3-6dkn.json').read()
+
+	# data = json.loads(file)
+
+	# locations = []
+
+	# places = dict()
+
+	# for i in data:
+	# 	if 'city' in i:
+	# 			locations.append(i['city'])
+
+	# count = len(locations)
+
+	# for place in locations:
+	# 	places[place] = places.get(place, 0) + 1
+
+	# places = places.items()
+
+	# chart = pygal.Pie()
+	# chart.title = 'Water Complaints'
+
+	# for i in places:
+	# 	percentage = i[1] * 0.0997
+	# 	chart.add(i[0], percentage)
+
+	# return chart.render()
 		
 
 @app.route('/')
 def home():
 	return render_template('start.html')
+
+@app.route('/signup')
+def signup_account():
+	return render_template('create_account.html')
+
+@app.route('/create', methods = ['POST']) 
+def save_account_to_db():
+	name = request.form['account_name']
+	password = request.form['account_pwd']
+	con_pwd = request.form['confirm_pwd']
+	if password != con_pwd:
+		return render_template('create_account.html')
+	else:
+		db_account(name, password)
+		return render_template('login.html')
+
+@app.route('/login-user')
+def log_in():
+	return render_template('login.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    name = request.form['account_name']
+    pwd = request.form['account_pwd']
+    if len(name) >= 1:
+    	confirm = login_db(name, pwd)
+    	if len(confirm) >= 1:
+    		print cache.get('name'), cache.get('pwd')
+    		return name, render_template('begin.html')
+    		cache.set('user', name, timeout=5 * 60)
+    	return render_template('login.html')
+
 
 @app.route('/begin')
 def name_input():
@@ -78,6 +162,10 @@ def game_hard():
 
 @app.route('/fail/<score>/<difficulty>')
 def fail(score, difficulty):
+	check = cache.get('user')
+	if check!='None':
+		print 'Ok!'
+		print check
 	return render_template('fail.html', score = score, difficulty = difficulty)
 
 @app.route('/save', methods = ['POST'])

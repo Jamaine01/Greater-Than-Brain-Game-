@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 text-center">
+		
+		<form id="login" name="login_account" onsubmit="validate()" action="/login" method="POST">
+			<input type="text" name="account_name" placeholder="User Name"></input>
+			<br><br>
+			<input type="password" name="account_pwd" placeholder="Enter Password"></input>
+			<br><br>
+			<input id="login_button" type="submit" value="login"></input>
+		</form>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

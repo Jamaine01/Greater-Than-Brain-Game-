@@ -3,19 +3,28 @@
 {% block content %}
 <div class="container game">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-4 text-center play_score">
-		<span>Score: <span id="score"></span></span>
+		<div class="col-md-6 col-md-offset-3 text-center play_score animated fadeIn">
+		<div>Score: <div id="score"></div></div>
 		</div>
 	</div>
+
 	<div class="row">
-		<div class="col-md-6 text-center num_one">
-		<a><button id="num_one" type="button" style="font-size: 60px;"></button></a><span id="operator_one">*</span><button id="num_two" type="button" style="font-size: 80px;"></button></a>
+		<div class="col-md-5 col-md-offset-3 text-center num_one animated fadeInLeft">
+		<a><button id="num_one" type="button" style="font-size: 50px;"></button></a><span id="operator_one" style="color: blue;">*</span><a><button id="num_two" type="button" style="font-size: 50px;"></button></a>
 		</div>
-		<div class="col-md-6 text-center num_two">
-		<a><button id="num_three" type="button" style="font-size: 60px;"></button><span id="operator_two">*</span><button id="num_four" type="button" style="font-size: 80px;"></button></a>
+		<div class="col-md-5 col-md-offset-1 text-center num_two animated fadeInRight">
+		<a><button id="num_three" type="button" style="font-size: 50px;"></button><span id="operator_two" style="color:blue;">*</span><button id="num_four" type="button" style="font-size: 50px;"></button></a>
 		</div>
 	</div>
-	<span id="timer" style="color: red; position: absolute; top: 430px; margin-left: 420px;"></span>
+
+	<div class="row spacer">
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+			<div id="timer" class="animated bounceInDown"></div>
+		</div>
+	</div>
 </div>
 
 <script>
@@ -49,7 +58,7 @@
 
 		document.getElementById('score').innerHTML = score;
 		
-		var count=30;
+		var count=33;
 
 		var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
 

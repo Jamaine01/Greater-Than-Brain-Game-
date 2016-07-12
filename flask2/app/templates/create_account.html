@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{%  block content %}
+
+<div class="container creation">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 text-center">
+			<div class="create_title animated fadeInDown">
+				Create your account, save scores easier!
+			</div><br>
+			<form id="signup" class="animated lightSpeedIn" name="create_account" onsubmit="validate()" action="/create" method="POST">
+				<input type="text" name="account_name" placeholder="Create Unique User Name"></input>
+				<br><br>
+				<input type="password" name="account_pwd" placeholder="Enter Easy to Remember Password"></input>
+				<br><br>
+				<input type="password" name="confirm_pwd" placeholder="Confirm Password"></input>
+				<br><br>
+				<input id="create_button" class="animated flipInY" type="submit" value="Create Account!"></input>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+<script>
+	function validate(){
+		if (document.forms['create_account']['account_pwd'].value != document.forms['create_account']['confirm_pwd'].value )
+		{
+			alert('Passwords do not match!');
+			return false;
+		};
+	};
+</script>
+
+{% endblock %}

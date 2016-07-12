@@ -1,7 +1,8 @@
 html, body {
 	width: 100%;
 	height: 100%;
-	background-color: black;
+	background: black;
+	position: absolute;	  
 }
 
 button {
@@ -31,165 +32,351 @@ a:active {
     text-decoration: none;
 }
 
+/*-------START 'START.HTML'---------*/
+
 .start {
-	position: absolute;
-	margin-top: 40px;
+	margin-top: 70px;
 }
-
 #logo {
-	font-size: 60px;
+	font-size: 80px;
 	color: white;
-	font-family: 'Poiret One', cursive;
+	font-family: 'Lato', sans-serif;
+	font-weight: 800;
+	-webkit-animation-delay: 1s;
+	-webkit-animation-duration: 3s;
 }
-
-.game {
-	position: absolute;
-	margin-bottom: 40px;
-}
-
-#logo2 {
-	font-size: 40px;
-	color: white;
-	font-family: 'Poiret One', cursive;
-}
-
-#dif_res {
-	color: white;
-	font-family: 'Poiret One', cursive;
-}
-
-#difficulty {
-	font-size: 40px;
-	color: white;
-	font-family: 'Poiret One', cursive;
-}
-
-#save {
-	font-size: 50px;
-	color: white;
-	font-family: 'Poiret One', cursive;
-}
-
 #start_p1 {
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Lato', sans-serif;
 	font-size: 35px;
 	color: white;
+	-webkit-animation-duration: 3s;
 }
-
 #start_p2 {
-	font-family: 'Oswald', sans-serif;
-	font-size: 25px;
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+	color: white;
+	-webkit-animation-delay: 2s;
+	-webkit-animation-duration: 4s;
+}
+.ss_buttons {
+	-webkit-animation-delay: 4.25s;
+}
+.create_ {
+	-webkit-animation-delay: 4.5s;
+}
+#account {
+	font-family: 'Lato', sans-serif;
+	font-size: 18px;
 	color: white;
 }
 
+#signup_button {
+	background-color: transparent;
+	color: white;
+	border: 1px solid white;
+	width: 125px;
+	height: 40px;
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+}
 #start_button {
-	background-color: black;
+	background-color: transparent;
 	color: white;
 	border: 1px solid white;
 	width: 90px;
 	height: 40px;
-	font-family: 'Poiret One', cursive;
+	font-family: 'Lato', sans-serif;
 	font-size: 20px;
+	position: relative;
 }
-
 #search_button {
-	background-color: black;
+	background-color: transparent;
 	color: white;
 	border: 1px solid white;
 	width: 110px;
 	height: 40px;
-	font-family: 'Poiret One', cursive;
+	font-family: 'Lato', sans-serif;
 	font-size: 16px;
 }
+/*-------END 'START.HTML'---------*/
 
-.play_score {
-	top: 50px;
-	font-size: 20px;
+
+
+/*-------START 'BEGIN.HTML'---------*/
+.start2 {
+	margin-top: 130px;
 }
-
-#score_results {
-	font-size: 12px;
-	/*position: absolute;
-	margin-left: 425px;*/
+#logo2 {
+	font-size: 50px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+	-webkit-animation-delay: 1s;
+	-webkit-animation-duration: 3s;
 }
-
-#play_again {
-	margin-left: 100px;
-	background-color: black;
+#start_button_easy {
+	background-color: transparent;
 	color: white;
 	border: 1px solid white;
-	width: 120px;
+	width: 90px;
 	height: 40px;
-	font-family: 'Poiret One', cursive;
-	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+	position: relative;
+	-webkit-animation-delay: 2s;
+	-webkit-animation-duration: 1.5s;
 }
-
-#search_name {
-	margin-top: 225px;
-}
-
-h3, h2 {
+#start_button_med {
+	background-color: transparent;
 	color: white;
-	font-family: 'Poiret One', cursive;
+	border: 1px solid white;
+	width: 90px;
+	height: 40px;
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+	position: relative;
+	-webkit-animation-delay: 2.5s;
+	-webkit-animation-duration: 1.5s;
 }
-
-
-span {
-	font-size: 60px;
+#start_button_hard {
+	background-color: transparent;
 	color: white;
-	font-family: 'Poiret One', cursive;
+	border: 1px solid white;
+	width: 90px;
+	height: 40px;
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+	position: relative;
+	-webkit-animation-delay: 3s;
+	-webkit-animation-duration: 1.5s;
 }
+/*-------END 'BEGIN.HTML'---------*/
 
+
+
+/*-------START 'PLAY***.HTML'---------*/
+.game {
+	margin-top: 10px;
+}
+.play_score {
+	top: 50px;
+	font-size: 50px;
+	color: white;
+	-webkit-animation-delay: 1s;
+	-webkit-animation-duration: 4s;
+	font-family: 'Lato', sans-serif;
+}
 .num_one {
-	font-family: 'Poiret One', cursive;
+	font-family: 'Lato', sans-serif;
 	font-size: 100px;
 	color: white;
 	top: 100px;
 	border: 1px solid white;
 	width: 200px;
 	height: 200px;
-	left: 300px;
 	padding-top: 20px; 
+	-webkit-animation-duration: 2s;
 }
-
 #num_one {
 	color: white;
 }
-
 .num_two {
-	font-family: 'Poiret One', cursive;
+	font-family: 'Lato', sans-serif;
 	font-size: 100px;
 	color: white;
 	top: 100px;
 	border: 1px solid white;
 	width: 200px;
 	height: 200px;
-	left: 450px;
 	padding-top: 20px;
+	-webkit-animation-duration: 2s;
 }
-
 #num_two {
 	color: white;
 }
-
 #num_three {
 	color: white;
 }
-
 #num_four {
 	color: white;
 }
-
 #operator_one, #operator_two {
 	color:white;
 }
+.spacer {
+	height: 130px;
+}
+#timer {
+	color: red;
+	-webkit-animation-delay: 2s;
+	-webkit-animation-duration: 2s;
+	font-family: 'Lato', sans-serif;
+	font-size: 50px
+}
+/*-------END 'PLAY***.HTML'---------*/
 
+
+
+/*-------START 'FAIL.HTML'---------*/
+.start3{
+	margin-top: 120px;
+}
+
+#logo3 {
+	font-size: 40px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+	-webkit-animation-duration: 2s;
+	margin-left: 15px;
+}
+#logo4 {
+	font-size: 35px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+	-webkit-animation-delay: .5s;
+	-webkit-animation-duration: 2s;
+	margin-left: -5px;
+}
+#final_score {
+	-webkit-animation-delay: 1.5s;
+	font-size: 35px;
+	padding-top: 6px;
+	margin-left: -15px;
+	color: white;
+	margin-right: 20px;
+	font-family: 'Lato', sans-serif;
+}
+#difficulty {
+	-webkit-animation-delay: 2s;
+	font-size: 35px;
+	margin-left: -15px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+}
+#save {
+	font-size: 30px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+}
+#save, #save_form {
+	-webkit-animation-delay: 2.25s;
+	-webkit-animation-duration: 2s;
+}
 #try_again {
 	background-color: black;
 	color: white;
 	border: 1px solid white;
 	width: 120px;
 	height: 40px;
-	font-family: 'Poiret One', cursive;
+	font-family: 'Lato', sans-serif;
 	font-size: 25px;
+}
+/*-------END 'FAIL.HTML'---------*/
+
+
+
+/*-------START 'TEST.HTML'---------*/
+.search_name {
+	margin-top: 225px;
+}
+#search_header {
+	font-family: 'Lato', sans-serif;
+	font-size: 25px;
+	color: white;
+}
+#submit_button {
+	background-color: transparent;
+	color: white;
+	border: 1px solid white;
+	width: 90px;
+	height: 40px;
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+}
+/*-------END 'TEST.HTML'---------*/
+
+
+
+
+/*-------START 'RESULTS.HTML'---------*/
+#results_header {
+	font-family: 'Lato', sans-serif;
+	font-size: 50px;
+	color: white;
+	-webkit-animation-duration: 5s;
+}
+#dif_res1 {
+	color: white;
+	font-family: 'Lato', sans-serif;
+	-webkit-animation-delay: 2s;
+	-webkit-animation-duration: 2s;
+}
+#dif_res2 {
+	color: white;
+	font-family: 'Lato', sans-serif;
+	-webkit-animation-delay: 2.3s;
+	-webkit-animation-duration: 2s;
+}
+#dif_res3 {
+	color: white;
+	font-family: 'Lato', sans-serif;
+	-webkit-animation-delay: 2.9s;
+	-webkit-animation-duration: 2s;
+}
+#play_again {
+	background-color: transparent;
+	color: white;
+	border: 1px solid white;
+	width: 130px;
+	height: 30px;
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+	-webkit-animation-delay: 3.2s;
+}
+#graph_title {
+	font-size: 20px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+	-webkit-animation-delay: 3.2s;
+}
+.my_graph {
+	position: absolute;
+	-webkit-animation-delay: 3.5s;
+	left: 80px;
+}
+/*-------END 'RESULTS.HTML'---------*/
+
+
+
+
+/*-------START 'CREATE_ACCOUNT.HTML'------*/
+.creation {
+	margin-top: 150px;
+}
+.create_title {
+	-webkit-animation-delay: 1s;
+	color: white;
+	font-family: 'Lato', sans-serif;
+	font-size: 30px;
+}
+input[name="account_name"], [name="account_pwd"], [name="confirm_pwd"] {
+	height: 30px;
+	width: 250px;
+} 
+#create_button {
+	background-color: transparent;
+	color: white;
+	border: 1px solid white;
+	width: 130px;
+	height: 30px;
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+	-webkit-animation-delay: 1.5s;
+}
+/*-------END 'CREATE_ACCOUNT.HTML'------*/
+
+
+
+
+div {
+	/*border: dotted 1px white;*/
 }
